@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Privacy Policy - Lior Azulay Apps">
+    <title>Privacy Policy - Lior Azulay Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --accent-cyan: #00f2ff;
+            --accent-purple: #7000ff;
+            --accent-pink: #ff00aa;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.5);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #050507;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .liquid-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 600px; height: 600px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            top: -200px; left: -200px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+
+        .blob-2 {
+            width: 500px; height: 500px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-pink));
+            bottom: -150px; right: -150px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(50px, 100px) rotate(180deg) scale(1.1); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 14px;
+            margin-bottom: 30px;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover { opacity: 0.7; }
+
+        h1 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .last-updated {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin: 35px 0 15px;
+        }
+
+        p, li {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        li { margin-bottom: 8px; }
+
+        .highlight {
+            background: rgba(0, 242, 255, 0.1);
+            border-left: 3px solid var(--accent-cyan);
+            padding: 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 25px 0;
+        }
+
+        .highlight p { margin-bottom: 0; color: var(--text-primary); }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-box a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .contact-box a:hover { text-decoration: underline; }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 28px; }
+            .glass-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <div class="glass-card">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Apps
+            </a>
+
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last updated: January 2026</p>
+
+            <p>This Privacy Policy describes how Lior Azulay ("we", "us", or "our") collects, uses, and shares information about you when you use our mobile applications and services.</p>
+
+            <h2>Information We Collect</h2>
+            <p>We may collect the following types of information:</p>
+            <ul>
+                <li><strong>Usage Data:</strong> Information about how you use our apps, including features accessed and time spent.</li>
+                <li><strong>Device Information:</strong> Device type, operating system, and unique device identifiers.</li>
+                <li><strong>User Content:</strong> Any content you create or share within our apps.</li>
+            </ul>
+
+            <h2>How We Use Your Information</h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Provide and maintain our services</li>
+                <li>Improve and personalize user experience</li>
+                <li>Analyze usage patterns to enhance our apps</li>
+                <li>Send important updates and notifications</li>
+                <li>Ensure security and prevent fraud</li>
+            </ul>
+
+            <h2>Data Sharing</h2>
+            <div class="highlight">
+                <p>We do not sell your personal information to third parties. We may share anonymized, aggregated data for analytics purposes.</p>
+            </div>
+
+            <h2>Third-Party Services</h2>
+            <p>Our apps may use third-party services that collect information. These include:</p>
+            <ul>
+                <li>Analytics providers (to understand app usage)</li>
+                <li>Advertising networks (for displaying relevant ads)</li>
+                <li>Cloud storage services (for data backup)</li>
+            </ul>
+
+            <h2>Data Security</h2>
+            <p>We implement appropriate security measures to protect your information. However, no method of transmission over the Internet is 100% secure.</p>
+
+            <h2>Children's Privacy</h2>
+            <p>Our apps are not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+            <h2>Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Request data portability</li>
+            </ul>
+
+            <h2>Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top: 0;">Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, please contact us at:</p>
+                <p><a href="mailto:Liorazulay72@gmail.com">Liorazulay72@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

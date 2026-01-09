@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lior Azulay - App Developer. Explore my apps: DreamSpace, Point, TicTac Boom! and more.">
+    <title>Lior Azulay - Apps</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --accent-cyan: #00f2ff;
+            --accent-purple: #7000ff;
+            --accent-pink: #ff00aa;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #050507;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Floating Liquid Background */
+        .liquid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .blob-1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple));
+            top: -200px;
+            left: -200px;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(45deg, var(--accent-purple), var(--accent-pink));
+            bottom: -150px;
+            right: -150px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: -5s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-pink));
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50% 50% 30% 70% / 50% 70% 30% 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg) scale(1.1);
+            }
+            50% {
+                transform: translate(0, 100px) rotate(180deg) scale(1);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg) scale(0.9);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Glass Card Base */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px) saturate(160%);
+            -webkit-backdrop-filter: blur(25px) saturate(160%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow:
+                0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transition: 0.6s;
+            pointer-events: none;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Header Section */
+        .header-section {
+            text-align: center;
+            padding: 60px 40px;
+            margin-bottom: 40px;
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .profile-ring {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-image {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            border: 4px solid #050507;
+        }
+
+        .header-section h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-section .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .contact-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(0, 242, 255, 0.3);
+        }
+
+        /* Navigation */
+        .nav-section {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .nav-link {
+            padding: 12px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+            border-color: var(--accent-cyan);
+            background: rgba(0, 242, 255, 0.1);
+        }
+
+        /* Apps Grid */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* App Card */
+        .app-card {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app-preview {
+            width: 100%;
+            height: 200px;
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-preview-bg {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background-size: cover;
+            background-position: center;
+            filter: blur(30px) saturate(1.5);
+            transform: scale(1.2);
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .app-preview-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(5, 5, 7, 0.95) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .app-content {
+            padding: 25px 30px 30px;
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            margin-bottom: 15px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .app-description {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .app-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .app-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .app-link:hover {
+            background: rgba(0, 242, 255, 0.1);
+            border-color: var(--accent-cyan);
+        }
+
+        .app-link i {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 32px;
+            }
+
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .app-preview {
+                height: 160px;
+            }
+
+            .app-icon {
+                width: 80px;
+                height: 80px;
+                border-radius: 18px;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .fade-in-delay-1 { animation-delay: 0.1s; }
+        .fade-in-delay-2 { animation-delay: 0.2s; }
+        .fade-in-delay-3 { animation-delay: 0.3s; }
+        .fade-in-delay-4 { animation-delay: 0.4s; }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Liquid Background -->
+    <div class="liquid-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="glass-card header-section fade-in">
+            <div class="profile-container">
+                <div class="profile-ring"></div>
+                <img src="profile.jpeg" alt="Lior Azulay" class="profile-image">
+            </div>
+            <h1>Lior Azulay</h1>
+            <p class="subtitle">App Developer & Designer</p>
+            <a href="mailto:Liorazulay72@gmail.com" class="contact-btn">
+                <i class="fas fa-envelope"></i>
+                Contact Me
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-section fade-in fade-in-delay-1">
+            <a href="#apps" class="nav-link active">Apps</a>
+            <a href="privacy.html" class="nav-link">Privacy Policy</a>
+            <a href="support.html" class="nav-link">Support</a>
+        </nav>
+
+        <!-- Apps Grid -->
+        <section id="apps" class="apps-grid">
+            <!-- DreamSpace -->
+            <div class="glass-card app-card fade-in fade-in-delay-2">
+                <div class="app-preview">
+                    <div class="app-preview-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/78/f2/da/78f2da1b-b474-f8df-5311-c34a4f75224e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg');"></div>
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/78/f2/da/78f2da1b-b474-f8df-5311-c34a4f75224e/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg" alt="DreamSpace Icon" class="app-icon">
+                    <div class="app-preview-overlay"></div>
+                </div>
+                <div class="app-content">
+                    <span class="app-meta">Social Networking</span>
+                    <h3 class="app-title">DreamSpace</h3>
+                    <p class="app-description">
+                        Log, explore, and reflect on your dreams with AI-powered insights. Features an infinite canvas, DALL-E 3 image generation, public dream universe, and in-app chat with friends.
+                    </p>
+                    <div class="app-links">
+                        <a href="https://apps.apple.com/il/app/dreamspace/id6747836503" target="_blank" class="app-link">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Point -->
+            <div class="glass-card app-card fade-in fade-in-delay-3">
+                <div class="app-preview">
+                    <div class="app-preview-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/28/c3/0d/28c30de1-528d-5425-900c-304195e265b6/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg');"></div>
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/28/c3/0d/28c30de1-528d-5425-900c-304195e265b6/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg" alt="Point Icon" class="app-icon">
+                    <div class="app-preview-overlay"></div>
+                </div>
+                <div class="app-content">
+                    <span class="app-meta">Social Networking</span>
+                    <h3 class="app-title">Point</h3>
+                    <p class="app-description">
+                        A location-based social network connecting digital and physical worlds. Discover local news, share experiences on an interactive map, find nearby places, and earn XP with emoji collection.
+                    </p>
+                    <div class="app-links">
+                        <a href="https://apps.apple.com/il/app/point/id6749490557" target="_blank" class="app-link">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bereshit -->
+            <div class="glass-card app-card fade-in fade-in-delay-4">
+                <div class="app-preview">
+                    <div class="app-preview-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a4/27/74/a427748e-5bec-38a4-98e9-97ad04efbc0d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg');"></div>
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/a4/27/74/a427748e-5bec-38a4-98e9-97ad04efbc0d/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/512x512bb.jpg" alt="Bereshit Icon" class="app-icon">
+                    <div class="app-preview-overlay"></div>
+                </div>
+                <div class="app-content">
+                    <span class="app-meta">Lifestyle</span>
+                    <h3 class="app-title">Bereshit</h3>
+                    <p class="app-description">
+                        Interactive Bible reading with AI commentaries in 6 interpretive styles, video feed, semantic search across all texts, popular verses with wisdom points, and user rankings.
+                    </p>
+                    <div class="app-links">
+                        <a href="https://apps.apple.com/il/app/%D7%91%D7%A8%D7%90%D7%A9%D7%99%D7%AA/id6749923278" target="_blank" class="app-link">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TicTac Boom -->
+            <div class="glass-card app-card fade-in fade-in-delay-4">
+                <div class="app-preview">
+                    <div class="app-preview-bg" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/00/be/d6/00bed692-021d-0175-24e2-b70ef3829eeb/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/512x512bb.jpg');"></div>
+                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/00/be/d6/00bed692-021d-0175-24e2-b70ef3829eeb/AppIcon-0-0-1x_U007ephone-0-1-0-85-220.png/512x512bb.jpg" alt="TicTac Boom Icon" class="app-icon">
+                    <div class="app-preview-overlay"></div>
+                </div>
+                <div class="app-content">
+                    <span class="app-meta">Strategy Game</span>
+                    <h3 class="app-title">TicTac Boom!</h3>
+                    <p class="app-description">
+                        The ultimate evolution of tic-tac-toe! 5x5 board with 11 unique power-ups including bombs, shields, and duplicators. Battle players globally in real-time with 20-second turns.
+                    </p>
+                    <div class="app-links">
+                        <a href="https://apps.apple.com/il/app/tictac-boom/id6757354286" target="_blank" class="app-link">
+                            <i class="fab fa-apple"></i> App Store
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="support.html">Support</a>
+                <a href="mailto:Liorazulay72@gmail.com">Contact</a>
+            </div>
+            <p>&copy; 2026 Lior Azulay. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

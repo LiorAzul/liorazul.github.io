@@ -1,0 +1,31 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "TEAM_ID.com.liorazulay.bereshit",
+                "paths": ["/bereshit/*", "/app/bereshit/*"]
+            },
+            {
+                "appID": "TEAM_ID.com.liorazulay.dreamspace",
+                "paths": ["/dreamspace/*", "/app/dreamspace/*"]
+            },
+            {
+                "appID": "TEAM_ID.com.liorazulay.point",
+                "paths": ["/point/*", "/app/point/*"]
+            },
+            {
+                "appID": "TEAM_ID.com.liorazulay.tictacboom",
+                "paths": ["/tictacboom/*", "/app/tictacboom/*"]
+            }
+        ]
+    },
+    "webcredentials": {
+        "apps": [
+            "TEAM_ID.com.liorazulay.bereshit",
+            "TEAM_ID.com.liorazulay.dreamspace",
+            "TEAM_ID.com.liorazulay.point",
+            "TEAM_ID.com.liorazulay.tictacboom"
+        ]
+    }
+}
